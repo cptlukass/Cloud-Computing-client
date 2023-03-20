@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Porπ</title>
+</head>
+<body>
+{% extends 'base.html' %}
+{% block content %}
+
+    {% if query_result == [] %}
+        <div class="container">
+        <br><br><b>Nie można pobrać danych z wybranej miejscowości.</b>
+        </div>
+    {% else %}
+        <div class="container">
+        <br><br><b>Pomiary jakości powietrza w miejscowości {{ city }}:</b><br><br>
+         <table>
+            <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Szkoła</th>
+                  <th scope="col">Ulica</th>
+                  <th scope="col">Wilgotność</th>
+                  <th scope="col">Ciśnienie</th>
+                  <th scope="col">Temperatura</th>
+                  <th scope="col">Stężenie PM10</th>
+                  <th scope="col">Stężenie PM2.5</th>
+                  <th scope="col">Data i godzina</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in query_result %}
+                    <tr>
+                      <td>{{ record.school_name }}</td>
+                      <td>{{ record.street }}</td>
+                      <td>{{ record.humidity }}</td>
+                      <td>{{ record.pressure }}</td>
+                      <td>{{ record.temperature }}</td>
+                      <td>{{ record.pm10 }}</td>
+                      <td>{{ record.pm25 }}</td>
+                      <td>{{ record.timestamp }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    {% endif %}
+
+{% endblock %}
+</body>
+</html>
