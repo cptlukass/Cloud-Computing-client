@@ -10,7 +10,7 @@ def index():
         return render_template('home.html')
     else:
         city_value = request.form['miasto']
-        query = requests.get(f'http://127.0.0.1:8000/{city_value}')
+        query = requests.get(f'https://cloud-computing-server-api-git-kaczordonald-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com/{city_value}')
         return render_template('final.html', query_result=query.json(), city=city_value.capitalize())
 
 
